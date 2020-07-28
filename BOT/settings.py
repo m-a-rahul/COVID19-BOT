@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'general',
+    'admin_honeypot',
 ]
 
 MIDDLEWARE = [
