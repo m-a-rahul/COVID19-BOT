@@ -15,9 +15,9 @@ This is a django based website to do the same (under development).
 
 # Collaborators 
   
-  [Pritish Gupta]("https://github.com/princepritish")
-  [Rahul MA]("https://github.com/Rahul0700")
-  [Thejineaswar Guhan]("https://github.com/Thejineaswar")
+  [Pritish Gupta]("https://github.com/princepritish")<br>
+  [Rahul MA]("https://github.com/Rahul0700")<br>
+  [Thejineaswar Guhan]("https://github.com/Thejineaswar")<br>
 
 
  
