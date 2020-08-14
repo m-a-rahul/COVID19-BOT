@@ -9,9 +9,16 @@ This is a django based website to do the same (under development).
   Framework- DJANGO
   Database Management Software- SQLite 3
   
-#Conceptual Schema of Database( At initial stages)
+# Conceptual Schema of Database( At initial stages)
 
 ![alt text](https://github.com/Rahul0700/COVID19-BOT/blob/master/BOT.jpg?raw=true)
+
+# Collaborators 
+  
+  [Pritish Gupta]("https://github.com/princepritish")
+  [Rahul MA]("https://github.com/Rahul0700")
+  [Thejineaswar Guhan]("https://github.com/Thejineaswar")
+
 
  
 
