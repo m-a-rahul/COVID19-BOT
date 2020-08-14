@@ -5,9 +5,9 @@ who suspects himself to be COVID-19 positive can call the ambulance to take him 
 This is a django based website to do the same (under development).
 
 # Basic Requirements
-  Front End- HTML,CSS,JS
-  Framework- DJANGO
-  Database Management Software- SQLite 3
+  Front End- HTML,CSS,JS<br>
+  Framework- DJANGO<br>
+  Database Management Software- SQLite 3<br>
   
 # Conceptual Schema of Database( At initial stages)
 
