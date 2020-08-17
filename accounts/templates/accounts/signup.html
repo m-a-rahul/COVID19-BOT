@@ -1,10 +1,17 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <style>
+      body{
+        background-image: url("{%static 'img/login_bg.jpg'%}");
+      }
+    </style>
     <title></title>
   </head>
   <body>
+
   <h2>Login/Sign Up page</h2>
     <form enctype="multipart/form-data" method="post">
       {% csrf_token %}
