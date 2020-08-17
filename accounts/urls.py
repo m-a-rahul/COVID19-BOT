@@ -5,5 +5,7 @@ from accounts import views
 app_name = 'accounts'
 
 urlpatterns = [
-    path('signup/',views.Hospitalsignup,name='signup'),
+    path('signup/hospital',views.Hospitalsignup,name='hsignup'),
+    path('signup/testing',views.Testingsignup,name='tsignup')
+
 ]

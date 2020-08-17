@@ -7,8 +7,8 @@
   <body>
     <form enctype="multipart/form-data" method="post">
       {% csrf_token %}
-      {{ hospital_form.as_p }}
-      {{ hospital_profile_form.as_p }}
+      {{ form.as_p }}
+      {{ profile_form.as_p }}
       <button type="submit" name="button">Submit</button>
     </form>
   </body>
