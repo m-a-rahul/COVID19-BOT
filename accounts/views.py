@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .forms import HospitalCreateForm,HospitalprofileForm,TestingCreateForm,TestingprofileForm
 from random import randint
 from django.contrib.auth.models import User
+from django.utils.text import slugify
 # Create your views here.
 def Hospitalsignup(request):
     if request.method == 'POST':
@@ -22,6 +23,7 @@ def Hospitalsignup(request):
                     integrity = True
             if integrity:
                 info_form.username = code
+                details_form.slug = slugify(code)
                 details_form.hospital = info_form
                 info_form.save()
                 details_form.save()
@@ -50,6 +52,7 @@ def Testingsignup(request):
                     integrity = True
             info_form.username = code
             details_form.testing = info_form
+            details_form.slug = slugify(code)
             info_form.save()
             details_form.save()
     else :

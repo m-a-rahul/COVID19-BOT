@@ -3,6 +3,7 @@ from django.core.validators import MinLengthValidator,MaxLengthValidator
 from django.contrib.auth.models import User
 
 class Hospitalprofile(models.Model):
+    slug = models.SlugField(unique=True,null=True)
     hospital = models.OneToOneField(User,on_delete=models.CASCADE)
     name = models.CharField(max_length=40)
     address = models.CharField(max_length=1000)
@@ -13,6 +14,7 @@ class Hospitalprofile(models.Model):
     available_beds = models.PositiveSmallIntegerField()
 
 class Testingprofile(models.Model):
+    slug = models.SlugField(unique=True,null=True)
     testing = models.OneToOneField(User,on_delete=models.CASCADE)
     name = models.CharField(max_length=40)
     address = models.CharField(max_length=1000)
