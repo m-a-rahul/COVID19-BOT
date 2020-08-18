@@ -4,10 +4,10 @@
   <head>
     <meta charset="utf-8">
     <style>
-      body
+      /* body
       {
         background-image: url("{% static 'img/login_bg.jpg' %}");
-      }
+      } */
     </style>
     <title></title>
   </head>
@@ -20,5 +20,9 @@
       {{ profile_form.as_p }}
       <button type="submit" name="button">Submit</button>
     </form>
+    <script type="text/javascript">
+      document.getElementById('id_contact_no').type = 'number';
+      document.getElementById('id_pin_code').type = 'number';
+    </script>
   </body>
 </html>
