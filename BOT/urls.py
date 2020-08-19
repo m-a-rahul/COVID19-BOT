@@ -22,4 +22,5 @@ urlpatterns = [
     path('innovators/', admin.site.urls),
     path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
     path('accounts/',include('accounts.urls')),
+    path('general/',include('general.urls')),
 ]
