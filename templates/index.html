@@ -1,0 +1,30 @@
+{% extends "base.html"%}
+{% block content %}
+<form method="POST">
+  {% csrf_token %}
+  <input type="text" name="pin_code" value="">
+  <input type="submit"  value="Find">
+</form>
+{% for hospital in hospitals %}
+{{ hospital.hospital.username }}
+{{ hospital.hospital.email }}
+{{ hospital.name }}
+<a href="{% url 'general:booking' slug=hospital.slug %}">
+<button type="button" class="btn btn-primary" name="button">Fill</button>
+</a>
+{% endfor %}
+{% for test in testing %}
+{{ test.testing.username }}
+{{ test.testing.email }}
+{{ test.name }}
+<a href="{% url 'general:booking' slug=test.slug %}">
+<button type="button" class="btn btn-primary" name="button">Fill</button>
+</a>
+{% endfor %}
+filteredhospitals
+{% for hospital in filteredhospitals %}
+{{ hospital.hospital.username }}
+{{ hospital.hospital.email }}
+{{ hospital.name }}
+{% endfor %}
+{% endblock %}

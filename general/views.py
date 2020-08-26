@@ -2,17 +2,32 @@ from django.shortcuts import render
 from .forms import Bookingform
 from accounts.models import Hospitalprofile,Testingprofile,Booking
 from random import randint
+from accounts.models import Hospitalprofile,Testingprofile
 # Create your views here.
+def Homepage(request):
+    hospitals = Hospitalprofile.objects.raw('SELECT * FROM accounts_hospitalprofile')
+    testing = Testingprofile.objects.all()
+    filteredhospitals = []
+    if request.method == "POST":
+        pin_code = request.POST.get('pin_code')
+        print("Pincode :",pin_code)
+        for hospital in hospitals:
+            if hospital.pin_code == pin_code:
+                filteredhospitals.append(hospital)
+    return render(request,'index.html',{'hospitals':hospitals,
+                                         'testing':testing,
+                                         'filteredhospitals':filteredhospitals})
+
 def booking(request,slug):
     if request.method == 'POST':
         form = Bookingform(data=request.POST)
         if form.is_valid():
             upload_form = form.save(commit=False)
             try:
-                book = Hospitalprofile.objects.get(slug=slug)
+                book = Hospitalprofile.objects.raw('SELECT * FROM accounts_hospitalprofile WHERE slug = slug')
                 booking = book.hospital
             except:
-                book = Testingprofile.objects.get(slug=slug)
+                book = Testingprofile.objects.raw('SELECT * FROM accounts_testingprofile WHERE slug = slug')
                 booking = book.testing
             integrity=False
             while(integrity==False):

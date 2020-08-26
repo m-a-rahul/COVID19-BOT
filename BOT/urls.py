@@ -17,8 +17,10 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf.urls.static import static
 from django.conf import settings
+from general.views import Homepage
 
 urlpatterns = [
+    path('',Homepage,name='home'),
     path('innovators/', admin.site.urls),
     path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
     path('accounts/',include('accounts.urls')),
