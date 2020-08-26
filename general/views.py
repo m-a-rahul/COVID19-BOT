@@ -9,11 +9,12 @@ def Homepage(request):
     testing = Testingprofile.objects.all()
     filteredhospitals = []
     if request.method == "POST":
-        pin_code = request.POST.get('pin_code')
-        print("Pincode :",pin_code)
-        for hospital in hospitals:
-            if hospital.pin_code == pin_code:
-                filteredhospitals.append(hospital)
+        pin = request.POST.get('pin_code')
+        print("Pincode :",pin)
+        pin = int(pin)
+        pin1 = pin-1
+        pin2 =pin+1
+        filteredhospitals = Hospitalprofile.objects.raw('SELECT * FROM accounts_hospitalprofile where pin_code>=%d and pin_code<=%d'%(pin1,pin2))
     return render(request,'index.html',{'hospitals':hospitals,
                                          'testing':testing,
                                          'filteredhospitals':filteredhospitals})
