@@ -10,11 +10,13 @@ def Homepage(request):
     filteredhospitals = []
     if request.method == "POST":
         pin = request.POST.get('pin_code')
-        print("Pincode :",pin)
         pin = int(pin)
-        pin1 = pin-1
-        pin2 =pin+1
-        filteredhospitals = Hospitalprofile.objects.raw('SELECT * FROM accounts_hospitalprofile where pin_code>=%d and pin_code<=%d'%(pin1,pin2))
+        i=1
+        while(len(filteredhospitals)<5 and i <=10):
+            pin1 = pin-i
+            pin2 =pin+i
+            filteredhospitals = Hospitalprofile.objects.raw('SELECT * FROM accounts_hospitalprofile where pin_code>=%d and pin_code<=%d'%(pin1,pin2))
+            i+=1
     return render(request,'index.html',{'hospitals':hospitals,
                                          'testing':testing,
                                          'filteredhospitals':filteredhospitals})
