@@ -2,16 +2,43 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>BOT</title>
     <!-- CSS only -->
     <style>
-      .topnav {
+      .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color:  rgb(206, 27, 27);
+  min-width: 160px;
+  width: 100%;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+.dropdown:hover .dropdown-content
+{display: block;}
+      .topnav,button {
     background-color: rgb(206, 27, 27);
     overflow: hidden;
   }
 
-  .topnav a {
-    float: left;
+  .topnav a,.topnav button{
+    float: right;
     color: #f2f2f2;
     text-align: center;
     padding: 14px 16px;
@@ -20,14 +47,14 @@
   }
 
 
-  .topnav a:hover {
+  .topnav a:hover,.topnav button:hover {
     background-color:lightgreen;
     color: black;
     text-decoration: underline;
   }
 
 
-  .topnav a.active {
+  .topnav a.active,.topnav button.active {
     background-color: #4CAF50;
     color: white;
   }
@@ -35,17 +62,21 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   </head>
   <body>
-    <div class="topnav">
-      <a class="active" href="#home">Home</a>
+    <div class="topnav" style="overflow: hidden;">
+      
       {% if user.is_authenticated %}
       <a href="{% url 'accounts:logout' %}">Log Out</a>
       {% else %}
+      <div class="dropdown" style="float: right;">
+        <button class="dropbutn" style="border: none;">Sign In <i class="fa fa-caret-down"></i></button>
+        <div class="dropdown-content">
       <a href="{% url 'accounts:tsignup' %}">Testing Signup</a>
-      <a href="{% url 'accounts:hsignup' %}">Hosipital Signup</a>
+      <a href="{% url 'accounts:hsignup' %}">Hosipital Signup</a></div></div>
       <a href="{% url 'accounts:login' %}">Log in</a>
       {% endif %}
       <a href="#hospital">Hospital</a>
       <a href="testing">Testing</a>
+      <a class="active" href="#home">Home</a>
     </div>
     {% block content %}
     {% endblock %}
