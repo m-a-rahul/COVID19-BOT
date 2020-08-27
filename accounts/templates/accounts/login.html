@@ -3,11 +3,53 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <style>
+      body
+      {
+        text-align: center;
+      }
+      #intro
+      {
+        text-decoration: solid underline;
+                margin: 10%20%;
+                font-size: xx-large;
+                text-align: center;
+                vertical-align: middle;
+                padding: 10px 20px 20px 20px;
+      }
+      #id_username,#id_password
+      {
+       
+                width: 40%;
+                height: 25px;
+                border-radius: 40px;
+                border: 1px solid black;
+                padding: 15px;
+                font-size: larger;            
+      }
+      button
+            {
+                background-color: rgba(255, 72, 0, 0.959);
+                border: none;
+                width: 55%;
+                height: 45px;
+                border-radius: 40px;
+                position: relative;
+                font-size: x-large;
+            }
+            button:hover
+            {
+                background-color: rgb(255, 196, 0);
+            }
+    </style>
   </head>
   <body>
+    <p id="intro">
+    Welcome to BOT Ecosystem
+    </p>
     <form method="post">
       {% csrf_token %}
-      {{ form }}
+      {{ form.as_p }}
       <button type="submit" name="button">Submit</button>
     </form>
   </body>
