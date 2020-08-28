@@ -1,8 +1,6 @@
-<!DOCTYPE html>
+{% extends "base.html"%}
 {% load static %}
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
+{% block content %}
     <style>
       /* body
       {
@@ -21,9 +19,6 @@
         margin: 0;
       }
     </style>
-    <title></title>
-  </head>
-  <body>
 
   <h2>Login/Sign Up page</h2>
     <form enctype="multipart/form-data" method="post">
@@ -36,5 +31,4 @@
       document.getElementById('id_contact_no').type = 'number';
       document.getElementById('id_pin_code').type = 'number';
     </script>
-  </body>
-</html>
+{% endblock %}
