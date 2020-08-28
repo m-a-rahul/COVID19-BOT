@@ -9,12 +9,12 @@
     <style>
       .dropdown-content {
   display: none;
-  position: absolute;
+  /* position: absolute; */
   background-color:  rgb(206, 27, 27);
-  min-width: 160px;
-  width: 100%;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+  /* min-width: 160px;
+  width: 100%; */
+  /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
+  /* z-index: 1; */
 }
 .dropdown {
   position: relative;
@@ -31,8 +31,11 @@
   text-align: left;
 }
 .dropdown:hover .dropdown-content
-{display: block;}
-      .topnav,button {
+{
+  display: block;
+}
+  .topnav,button
+  {
     background-color: rgb(206, 27, 27);
     overflow: hidden;
   }
@@ -63,14 +66,14 @@
   </head>
   <body>
     <div class="topnav" style="overflow: hidden;">
-      
+
       {% if user.is_authenticated %}
       <a href="{% url 'accounts:logout' %}">Log Out</a>
       {% else %}
       <div class="dropdown" style="float: right;">
         <button class="dropbutn" style="border: none;">Sign In <i class="fa fa-caret-down"></i></button>
         <div class="dropdown-content">
-      <a href="{% url 'accounts:tsignup' %}">Testing Signup</a>
+      <a href="{% url 'accounts:tsignup' %}">Testing Signup</a><br>
       <a href="{% url 'accounts:hsignup' %}">Hosipital Signup</a></div></div>
       <a href="{% url 'accounts:login' %}">Log in</a>
       {% endif %}
