@@ -1,9 +1,10 @@
 {% extends "base.html"%}
 {% block content %}
-<form method="POST">
+<form style="text-align: center;" method="POST">
   {% csrf_token %}
+  <h4><u>Type your Pincode:</u></h4>
   <div class="text-center" style="margin:10px 0px;">
-    <input type="text" name="pin_code" value="">
+    <input type="text" name="pin_code" value=""  placeholder="Hospital/Testing Search">
     <input type="submit"  value="Find">
   </div>
 </form>
@@ -18,7 +19,7 @@
    {% endif %}
   </div>
 {% if filteredhospitals %}
-<h3>Filtered Hospitals List :</h3>
+<h3 style="text-align: center;"><u>Filtered Hospitals:</u></h3>
 <ol>
   {% for hospital in filteredhospitals %}
   <li>
@@ -38,7 +39,7 @@
 </ol>
 {% endif %}
 {% if filteredtesting %}
-<h3>Filtered Testing Facility List</h3>
+<h3 style="text-align: center;"><u>Filtered Testing Facility List</u></h3>
 <ol>
   {% for test in testing %}
   <li>
@@ -58,7 +59,7 @@
   {% endfor %}
 </ol>
 {% endif %}
-<h2>Hospitals List</h2>
+<h2 style="text-align: center;"><u>Hospitals List</u></h2>
 <ol>
   {% for hospital in hospitals %}
   <li>
@@ -76,7 +77,7 @@
   </li>
   {% endfor %}
 </ol>
-<h2>Testing Facility List</h2>
+<h2 style="text-align: center;"><u>Testing Facility List</u></h2>
 <ol>
   {% for test in testing %}
   <li>
