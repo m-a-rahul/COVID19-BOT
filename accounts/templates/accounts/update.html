@@ -1,0 +1,33 @@
+{% extends "base.html"%}
+{% load static %}
+{% block content %}
+{% if is_hospital == "True" %}
+<form enctype="multipart/form-data" method="post">
+  {% csrf_token %}
+  <label for="">Total Beds:</label>
+  {{ form.total_beds }}
+  <label for="">Total Beds:</label>
+  {{ form.occupied_beds }}
+  <label for="">Total Beds:</label>
+  {{ form.available_beds }}
+  <div style="display:none">
+    {{ form.address }}
+    {{ form.contact_no }}
+    {{ form.pin_code }}
+  </div>
+  <button type="submit" name="button">Submit</button>
+</form>
+{% else %}
+<form enctype="multipart/form-data" method="post">
+  {% csrf_token %}
+  <label for="">Availablity:</label>
+  {{ form.availablity }}
+  <div style="display:none">
+    {{ form.address }}
+    {{ form.contact_no }}
+    {{ form.pin_code }}
+  </div>
+  <button type="submit" name="button">Submit</button>
+</form>
+{% endif %}
+{% endblock %}
