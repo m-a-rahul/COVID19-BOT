@@ -43,6 +43,15 @@
     <p id="intro">
     Welcome to BOT Ecosystem
     </p>
+    <div class="container">
+      {% if messages %}
+       {% for message in messages %}
+         <div class="alert alert-{{ message.tags }}" role="alert">
+           {{ message }}
+         </div>
+       {% endfor %}
+     {% endif %}
+    </div>
     <form method="post">
       {% csrf_token %}
       {{ form.as_p }}

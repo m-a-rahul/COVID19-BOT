@@ -3,6 +3,9 @@ from .forms import HospitalCreateForm,HospitalprofileForm,TestingCreateForm,Test
 from random import randint
 from django.contrib.auth.models import User
 from django.utils.text import slugify
+from django.contrib import messages
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 # Create your views here.
 def Hospitalsignup(request):
     if request.method == 'POST':
@@ -25,8 +28,10 @@ def Hospitalsignup(request):
                 info_form.username = code
                 details_form.slug = slugify(code)
                 details_form.hospital = info_form
+                messages.success(request,'Your user id is : %s'%code)
                 info_form.save()
                 details_form.save()
+                return HttpResponseRedirect(reverse('login'))
     else :
         hospital_form = HospitalCreateForm()
         hospital_profile_form = HospitalprofileForm()
@@ -53,8 +58,10 @@ def Testingsignup(request):
             info_form.username = code
             details_form.testing = info_form
             details_form.slug = slugify(code)
+            messages.success(request,'Your user id is : %s'%code)
             info_form.save()
             details_form.save()
+            return HttpResponseRedirect(reverse('login'))
     else :
         test_form = TestingCreateForm()
         test_profile_form = TestingprofileForm()
