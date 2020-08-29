@@ -5,26 +5,61 @@
   <input type="text" name="pin_code" value="">
   <input type="submit"  value="Find">
 </form>
-{% for hospital in hospitals %}
-{{ hospital.hospital.username }}
-{{ hospital.hospital.email }}
-{{ hospital.name }}
-<a href="{% url 'general:booking' slug=hospital.slug %}">
-<button type="button" class="btn btn-primary" name="button">Fill</button>
-</a>
-{% endfor %}
-{% for test in testing %}
-{{ test.testing.username }}
-{{ test.testing.email }}
-{{ test.name }}
-<a href="{% url 'general:booking' slug=test.slug %}">
-<button type="button" class="btn btn-primary" name="button">Fill</button>
-</a>
-{% endfor %}
-filteredhospitals
-{% for hospital in filteredhospitals %}
-{{ hospital.hospital.username }}
-{{ hospital.hospital.email }}
-{{ hospital.name }}
-{% endfor %}
+{% if filteredhospitals %}
+<h3>Filtered Hospitals</h3>
+<ol>
+  {% for hospital in filteredhospitals %}
+  <li>
+    <ul>
+      <li>Hospital Code: {{ hospital.hospital.username }}</li>
+      <li>Hospital Name: {{ hospital.name }}</li>
+      <li>Hospital Email: {{ hospital.hospital.email }}</li>
+      <li>Hospital Address: {{ hospital.address }} </li>
+      <li>Hospital Pin Code: {{ hospital.pin_code }}</li>
+      <li>Hospital Contact no.: {{ hospital.contact_no }}</li>
+    </ul>
+    <a href="{% url 'general:booking' slug=hospital.slug %}">
+    <button type="button" class="btn btn-primary" name="button">Fill</button>
+    </a>
+  </li>
+  {% endfor %}
+</ol>
+{% endif %}
+<h2>Hospitals List</h2>
+<ol>
+  {% for hospital in hospitals %}
+  <li>
+    <ul>
+      <li>Hospital Code: {{ hospital.hospital.username }}</li>
+      <li>Hospital Name: {{ hospital.name }}</li>
+      <li>Hospital Email: {{ hospital.hospital.email }}</li>
+      <li>Hospital Address: {{ hospital.address }} </li>
+      <li>Hospital Pin Code: {{ hospital.pin_code }}</li>
+      <li>Hospital Contact no.: {{ hospital.contact_no }}</li>
+    </ul>
+    <a href="{% url 'general:booking' slug=hospital.slug %}">
+    <button type="button" class="btn btn-primary" name="button">Fill</button>
+    </a>
+  </li>
+  {% endfor %}
+</ol>
+<h2>Testing Facility List</h2>
+<ol>
+  {% for test in testing %}
+  <li>
+    <ul>
+      <li>Testing Code: {{ test.testing.username }}</li>
+      <li>Testing name: {{ test.name }}</li>
+      <li>Testing Email: {{ test.testing.email }}</li>
+      <li>Testing Address: {{ test.address }}</li>
+      <li>Testing Pin Code: {{ test.pin_code }}</li>
+      <li>Testing Contact no.: {{ test.contact_no }}</li>
+    </ul>
+    <a href="{% url 'general:booking' slug=test.slug %}">
+    <button type="button" class="btn btn-primary" name="button">Fill</button>
+    </a>
+  </li>
+
+  {% endfor %}
+</ol>
 {% endblock %}
