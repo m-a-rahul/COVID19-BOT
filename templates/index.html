@@ -1,5 +1,5 @@
 {% extends "base.html"%}
-
+{% block content %}
 <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
   <script>
       $(document).ready(function () {
@@ -34,10 +34,17 @@
   transform: translate(-50%,-50%);
   -ms-transform: translate(-50%,-50%);
 }
+table{
+  font-weight: 900;
+}
+button
+{
+  background-color: orangered;
+border-radius: 20px;
+}
 </style>
 <div id="div1" style="display:none"><div id="text">Rahul & Pritish's DBMS Project<br>Thanks for Viewing</div></div>
   <span id="count"></span>
-  {% block content %}
   <div class="container">
   {% if is_hospital == "True" %}
   <h1>Details</h1>
@@ -145,7 +152,7 @@
     <td>{{ hospital.contact_no }}</td>
     <td>
       <a href="{% url 'general:booking' slug=hospital.slug %}">
-        <button type="button" class="btn btn-primary" name="button">Fill</button>
+        <button type="button" class="btn btn-primary" name="button">Book Appointment</button>
       </a>
     </td>
   </tr>
@@ -174,7 +181,7 @@
     <td>{{ test.contact_no }}</td>
     <td>
       <a href="{% url 'general:booking' slug=test.slug %}">
-      <button type="button" class="btn btn-primary" name="button">Fill</button>
+      <button type="button" class="btn btn-primary" name="button">Book Appointment</button>
       </a>
     </td>
   </tr>
@@ -202,7 +209,7 @@
     <td>{{ hospital.contact_no }}</td>
     <td>
       <a href="{% url 'general:booking' slug=hospital.slug %}">
-        <button type="button" class="btn btn-primary" name="button">Fill</button>
+        <button type="button" class="btn btn-primary" name="button">Book Appointment</button>
       </a>
     </td>
   </tr>
@@ -230,7 +237,7 @@
     <td>{{ test.contact_no }}</td>
     <td>
       <a href="{% url 'general:booking' slug=test.slug %}">
-      <button type="button" class="btn btn-primary" name="button">Fill</button>
+      <button type="button" class="btn btn-primary" name="button">Book Appointment</button>
       </a>
     </td>
   </tr>
