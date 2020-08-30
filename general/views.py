@@ -2,10 +2,23 @@ from django.shortcuts import render
 from .forms import Bookingform
 from accounts.models import Hospitalprofile,Testingprofile,Booking
 from random import randint
-from accounts.models import Hospitalprofile,Testingprofile
 from django.contrib import messages
 # Create your views here.
 def Homepage(request):
+    current_instance ="Null"
+    is_hospital = "Null"
+    bookings_under = "No bookings"
+    if request.user.is_authenticated:
+        try:
+            current_instance = Hospitalprofile.objects.get(hospital=request.user)
+            is_hospital="True"
+        except:
+            current_instance = Testingprofile.objects.get(testing=request.user)
+            is_hospital="False"
+        try:
+            bookings_under=Booking.objects.filter(booking=request.user)
+        except :
+            bookings_under = "No bookings"
     hospitals = Hospitalprofile.objects.raw('SELECT * FROM accounts_hospitalprofile')
     testing = Testingprofile.objects.all()
     filteredhospitals = []
@@ -28,11 +41,17 @@ def Homepage(request):
         if len(filteredhospitals) is 0:
             messages.warning(request,'There are no hospitals nearby to this pincode')
         if len(filteredtesting) is 0:
-            messages.warning(request,'There are no testing nearby to this pincode')
+            messages.warning(request,'There are no testing facilities nearby to this pincode')
+    if bookings_under != "No bookings":
+        if bookings_under.count() is 0:
+            bookings_under = "No bookings"
     return render(request,'index.html',{'hospitals':hospitals,
                                          'testing':testing,
                                          'filteredhospitals':filteredhospitals,
-                                         'filteredtesting':filteredtesting})
+                                         'filteredtesting':filteredtesting,
+                                         'is_hospital':is_hospital,
+                                         'bookings_under':bookings_under,
+                                         'current_instance':current_instance})
 
 def booking(request,slug):
     if request.method == 'POST':

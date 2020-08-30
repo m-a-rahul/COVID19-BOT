@@ -6,8 +6,8 @@
           // Hide the div
           $("#div1").hide();
           // Show the div after 5s
-          $("#div1").delay(600).fadeIn('3').fadeOut(6000);  
-      });    
+          $("#div1").delay(600).fadeIn('3').fadeOut(6000);
+      });
   </script>
 <style>
       #div1 {
@@ -38,6 +38,74 @@
 <div id="div1" style="display:none"><div id="text">Rahul & Pritish's DBMS Project<br>Thanks for Viewing</div></div>
   <span id="count"></span>
   {% block content %}
+  <div class="container">
+  {% if is_hospital == "True" %}
+  <h1>Details</h1>
+  <p>Total beds: {{ current_instance.total_beds }}</p>
+  <p>Available beds: {{ current_instance.available_beds }}</p>
+  <p>Occupied beds: {{ current_instance.occupied_beds }}</p>
+  <a href="{% url 'accounts:hupdate' %}">
+    <button type="button" class="btn btn-outline-primary"name="button">Update</button>
+  </a>
+  {% if bookings_under == "No bookings" %}
+  <div class="text-center">
+       <div class="alert alert-warning" role="alert">
+         There are no bookings under your hospital name
+       </div>
+  </div>
+  {% else %}
+  <table class="table table-bordered">
+    <thead class="table-success">
+      <th>User Code:</th>
+      <th>User Name:</th>
+      <th>User Address:</th>
+      <th>User Pin Code:</th>
+      <th>User Contact no.:</th>
+    </thead>
+    {% for bookings in bookings_under %}
+    <tr>
+      <td>{{ bookings.naiveuser_id }}</td>
+      <td>{{ bookings.name }}</td>
+      <td>{{ bookings.address }}</td>
+      <td>{{ bookings.pin_code }}</td>
+      <td>{{ bookings.contact_no }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% endif %}
+  {% elif is_hospital == "False"%}
+  <h1>Details</h1>
+  <p>Availablity : {{ current_instance.availablity }}</p>
+  <a href="{% url 'accounts:tupdate' %}">
+    <button type="button" class="btn btn-outline-primary"name="button">Update</button>
+  </a>
+  {% if bookings_under == "No bookings" %}
+  <div class="text-center">
+       <div class="alert alert-warning" role="alert">
+         There are no bookings under your testing facility name
+       </div>
+  </div>
+  {% else %}
+  <table class="table table-bordered">
+    <thead class="table-success">
+      <th>User Code:</th>
+      <th>User Name:</th>
+      <th>User Address:</th>
+      <th>User Pin Code:</th>
+      <th>User Contact no.:</th>
+    </thead>
+    {% for bookings in bookings_under %}
+    <tr>
+      <td>{{ bookings.naiveuser_id }}</td>
+      <td>{{ bookings.name }}</td>
+      <td>{{ bookings.address }}</td>
+      <td>{{ bookings.pin_code }}</td>
+      <td>{{ bookings.contact_no }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% endif %}
+  {% else %}
 <form style="text-align: center;" method="POST">
   {% csrf_token %}
   <h4><u>Type your Pincode:</u></h4>
@@ -46,7 +114,6 @@
     <input type="submit"  value="Find">
   </div>
 </form>
-<div class="container">
   <div class="text-center">
     {% if messages %}
      {% for message in messages %}
@@ -58,81 +125,117 @@
   </div>
 {% if filteredhospitals %}
 <h3 style="text-align: center;"><u>Filtered Hospitals:</u></h3>
-<ol>
+<table class="table table-bordered">
+  <thead class="table-danger">
+    <th>Hospital Code:</th>
+    <th>Hospital Name:</th>
+    <th>Hospital Email:</th>
+    <th>Hospital Address:</th>
+    <th>Hospital Pin Code:</th>
+    <th>Hospital Contact no.:</th>
+    <th>Booking Form:</th>
+  </thead>
   {% for hospital in filteredhospitals %}
-  <li>
-    <ul>
-      <li>Hospital Code: {{ hospital.hospital.username }}</li>
-      <li>Hospital Name: {{ hospital.name }}</li>
-      <li>Hospital Email: {{ hospital.hospital.email }}</li>
-      <li>Hospital Address: {{ hospital.address }} </li>
-      <li>Hospital Pin Code: {{ hospital.pin_code }}</li>
-      <li>Hospital Contact no.: {{ hospital.contact_no }}</li>
-    </ul>
-    <a href="{% url 'general:booking' slug=hospital.slug %}">
-    <button type="button" class="btn btn-primary" name="button">Fill</button>
-    </a>
-  </li>
+  <tr>
+    <td>{{ hospital.hospital.username }}</td>
+    <td>{{ hospital.name }}</td>
+    <td>{{ hospital.hospital.email }}</td>
+    <td>{{ hospital.address }}</td>
+    <td>{{ hospital.pin_code }}</td>
+    <td>{{ hospital.contact_no }}</td>
+    <td>
+      <a href="{% url 'general:booking' slug=hospital.slug %}">
+        <button type="button" class="btn btn-primary" name="button">Fill</button>
+      </a>
+    </td>
+  </tr>
   {% endfor %}
-</ol>
+</table>
 {% endif %}
 {% if filteredtesting %}
 <h3 style="text-align: center;"><u>Filtered Testing Facility List</u></h3>
-<ol>
-  {% for test in testing %}
-  <li>
-    <ul>
-      <li>Testing Code: {{ test.testing.username }}</li>
-      <li>Testing name: {{ test.name }}</li>
-      <li>Testing Email: {{ test.testing.email }}</li>
-      <li>Testing Address: {{ test.address }}</li>
-      <li>Testing Pin Code: {{ test.pin_code }}</li>
-      <li>Testing Contact no.: {{ test.contact_no }}</li>
-    </ul>
-    <a href="{% url 'general:booking' slug=test.slug %}">
-    <button type="button" class="btn btn-primary" name="button">Fill</button>
-    </a>
-  </li>
-
+<table class="table table-bordered">
+  <thead class="table-danger">
+    <th>Testing Facility Code:</th>
+    <th>Testing Facility Name:</th>
+    <th>Testing Facility Email:</th>
+    <th>Testing Facility Address:</th>
+    <th>Testing Facility Pin Code:</th>
+    <th>Testing Facility Contact no.:</th>
+    <th>Booking Form:</th>
+  </thead>
+  {% for test in filteredtesting %}
+  <tr>
+    <td>{{ test.testing.username }}</td>
+    <td>{{ test.name }}</td>
+    <td>{{ test.testing.email }}</td>
+    <td>{{ test.address }}</td>
+    <td>{{ test.pin_code }}</td>
+    <td>{{ test.contact_no }}</td>
+    <td>
+      <a href="{% url 'general:booking' slug=test.slug %}">
+      <button type="button" class="btn btn-primary" name="button">Fill</button>
+      </a>
+    </td>
+  </tr>
   {% endfor %}
-</ol>
+</table>
 {% endif %}
-<h2 style="text-align: center;"><u>Hospitals List</u></h2>
-<ol>
+<h2 id="hospital" style="text-align: center;"><u>Hospitals List</u></h2>
+<table class="table table-hover">
+  <thead class="table-primary">
+    <th>Hospital Code:</th>
+    <th>Hospital Name:</th>
+    <th>Hospital Email:</th>
+    <th>Hospital Address:</th>
+    <th>Hospital Pin Code:</th>
+    <th>Hospital Contact no.:</th>
+    <th>Booking Form:</th>
+  </thead>
   {% for hospital in hospitals %}
-  <li>
-    <ul>
-      <li>Hospital Code: {{ hospital.hospital.username }}</li>
-      <li>Hospital Name: {{ hospital.name }}</li>
-      <li>Hospital Email: {{ hospital.hospital.email }}</li>
-      <li>Hospital Address: {{ hospital.address }} </li>
-      <li>Hospital Pin Code: {{ hospital.pin_code }}</li>
-      <li>Hospital Contact no.: {{ hospital.contact_no }}</li>
-    </ul>
-    <a href="{% url 'general:booking' slug=hospital.slug %}">
-    <button type="button" class="btn btn-primary" name="button">Fill</button>
-    </a>
-  </li>
+  <tr>
+    <td>{{ hospital.hospital.username }}</td>
+    <td>{{ hospital.name }}</td>
+    <td>{{ hospital.hospital.email }}</td>
+    <td>{{ hospital.address }}</td>
+    <td>{{ hospital.pin_code }}</td>
+    <td>{{ hospital.contact_no }}</td>
+    <td>
+      <a href="{% url 'general:booking' slug=hospital.slug %}">
+        <button type="button" class="btn btn-primary" name="button">Fill</button>
+      </a>
+    </td>
+  </tr>
   {% endfor %}
-</ol>
-<h2 style="text-align: center;"><u>Testing Facility List</u></h2>
-<ol>
-  {% for test in testing %}
-  <li>
-    <ul>
-      <li>Testing Code: {{ test.testing.username }}</li>
-      <li>Testing name: {{ test.name }}</li>
-      <li>Testing Email: {{ test.testing.email }}</li>
-      <li>Testing Address: {{ test.address }}</li>
-      <li>Testing Pin Code: {{ test.pin_code }}</li>
-      <li>Testing Contact no.: {{ test.contact_no }}</li>
-    </ul>
-    <a href="{% url 'general:booking' slug=test.slug %}">
-    <button type="button" class="btn btn-primary" name="button">Fill</button>
-    </a>
-  </li>
+</table>
 
+<h2 id="testing" style="text-align: center;"><u>Testing Facility List</u></h2>
+<table class="table table-hover">
+  <thead class="table-primary">
+    <th>Testing Facility Code:</th>
+    <th>Testing Facility Name:</th>
+    <th>Testing Facility Email:</th>
+    <th>Testing Facility Address:</th>
+    <th>Testing Facility Pin Code:</th>
+    <th>Testing Facility Contact no.:</th>
+    <th>Booking Form:</th>
+  </thead>
+  {% for test in testing %}
+  <tr>
+    <td>{{ test.testing.username }}</td>
+    <td>{{ test.name }}</td>
+    <td>{{ test.testing.email }}</td>
+    <td>{{ test.address }}</td>
+    <td>{{ test.pin_code }}</td>
+    <td>{{ test.contact_no }}</td>
+    <td>
+      <a href="{% url 'general:booking' slug=test.slug %}">
+      <button type="button" class="btn btn-primary" name="button">Fill</button>
+      </a>
+    </td>
+  </tr>
   {% endfor %}
-</ol>
+</table>
+{% endif %}
 </div>
 {% endblock %}
