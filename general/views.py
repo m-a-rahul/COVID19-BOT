@@ -40,10 +40,14 @@ def booking(request,slug):
         if form.is_valid():
             upload_form = form.save(commit=False)
             try:
-                book = Hospitalprofile.objects.raw('SELECT * FROM accounts_hospitalprofile WHERE slug = slug')
+                book = Hospitalprofile.objects.get(slug=slug)
+                #raw('SELECT * FROM accounts_hospitalprofile where slug = %s' %slug)
+                print(book)
                 booking = book.hospital
             except:
-                book = Testingprofile.objects.raw('SELECT * FROM accounts_testingprofile WHERE slug = slug')
+                book = Testingprofile.objects.get(slug=slug)
+                #raw('SELECT * FROM accounts_testingprofile where slug = %s' %slug)
+                print(book)
                 booking = book.testing
             integrity=False
             while(integrity==False):

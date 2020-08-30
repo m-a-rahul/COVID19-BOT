@@ -18,14 +18,24 @@
         -webkit-appearance: none;
         margin: 0;
       }
+      input
+      {
+        border-radius: 20px;
+        padding: 5px;
+        border: 1px solid grey;
+      }
+      button:hover
+            {
+                background-color: rgb(255, 196, 0);
+            }
     </style>
 
-  <h2>Login/Sign Up page</h2>
-    <form enctype="multipart/form-data" method="post">
+  <h2 style="margin: 10px; text-align: center; text-decoration: solid underline;">Welcome to Login/Sign Up page of BOT Ecosystem</h2>
+    <form style="margin: 20px; margin-left: 40px;" enctype="multipart/form-data" method="post">
       {% csrf_token %}
       {{ form.as_p }}
       {{ profile_form.as_p }}
-      <button type="submit" name="button">Submit</button>
+      <button style="background-color: orangered; border-radius: 20px; text-align: center; padding: 10px; border: none; width: 150px; text-decoration: solid;" type="submit" name="button">Submit</button>
     </form>
     <script type="text/javascript">
       document.getElementById('id_contact_no').type = 'number';

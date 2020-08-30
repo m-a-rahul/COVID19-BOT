@@ -1,5 +1,43 @@
 {% extends "base.html"%}
-{% block content %}
+
+<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+  <script>
+      $(document).ready(function () {
+          // Hide the div
+          $("#div1").hide();
+          // Show the div after 5s
+          $("#div1").delay(600).fadeIn('3').fadeOut(6000);  
+      });    
+  </script>
+<style>
+      #div1 {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 2;
+  cursor: pointer;
+}
+
+#text{
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  font-size: 50px;
+  color: white;
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+}
+</style>
+<div id="div1" style="display:none"><div id="text">Rahul & Pritish's DBMS Project<br>Thanks for Viewing</div></div>
+  <span id="count"></span>
+  {% block content %}
 <form style="text-align: center;" method="POST">
   {% csrf_token %}
   <h4><u>Type your Pincode:</u></h4>
