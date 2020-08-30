@@ -8,7 +8,7 @@ def Homepage(request):
     current_instance ="Null"
     is_hospital = "Null"
     bookings_under = "No bookings"
-    if request.user.is_authenticated:
+    if request.user.is_authenticated and not request.user.is_superuser:
         try:
             current_instance = Hospitalprofile.objects.get(hospital=request.user)
             is_hospital="True"
