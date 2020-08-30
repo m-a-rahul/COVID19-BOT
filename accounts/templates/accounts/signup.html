@@ -24,6 +24,16 @@
         padding: 5px;
         border: 1px solid grey;
       }
+      button
+      {
+        background-color: orangered; 
+        border-radius: 20px; 
+        text-align: center; 
+        padding: 10px; 
+        border: none; 
+        width: 150px; 
+        text-decoration: solid;
+      }
       button:hover
             {
                 background-color: rgb(255, 196, 0);
@@ -35,7 +45,7 @@
       {% csrf_token %}
       {{ form.as_p }}
       {{ profile_form.as_p }}
-      <button style="background-color: orangered; border-radius: 20px; text-align: center; padding: 10px; border: none; width: 150px; text-decoration: solid;" type="submit" name="button">Submit</button>
+      <button type="submit" name="button">Submit</button>
     </form>
     <script type="text/javascript">
       document.getElementById('id_contact_no').type = 'number';
