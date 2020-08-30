@@ -37,11 +37,7 @@
 table{
   font-weight: 900;
 }
-button
-{
-  background-color: orangered;
-border-radius: 20px;
-}
+
 </style>
 <div id="div1" style="display:none"><div id="text">Rahul & Pritish's DBMS Project<br>Thanks for Viewing</div></div>
   <span id="count"></span>
@@ -52,7 +48,7 @@ border-radius: 20px;
   <p>Available beds: {{ current_instance.available_beds }}</p>
   <p>Occupied beds: {{ current_instance.occupied_beds }}</p>
   <a href="{% url 'accounts:hupdate' %}">
-    <button type="button" class="btn btn-outline-primary"name="button">Update</button>
+    <button type="button" class="btn btn-outline-primary" name="button">Update</button>
   </a>
   {% if bookings_under == "No bookings" %}
   <div class="text-center">
@@ -115,9 +111,10 @@ border-radius: 20px;
   {% else %}
 <form style="text-align: center;" method="POST">
   {% csrf_token %}
-  <h4><u>Type your Pincode:</u></h4>
-  <div class="text-center" style="margin:10px 0px;">
-    <input type="text" name="pin_code" value=""  placeholder="Hospital/Testing Search">
+  <h2 style="text-align: center; text-decoration: underline;">Beds On Track(BOT)</h2>
+  
+  <div class="text-center" style="margin:10px 0px;">Type your Pincode:
+    <input type="text" name="pin_code" value="" style="width: 250px;"  placeholder="Hospital/Testing Search">
     <input type="submit"  value="Find">
   </div>
 </form>
