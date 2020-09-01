@@ -6,7 +6,7 @@
           // Hide the div
           $("#div1").hide();
           // Show the div after 5s
-          $("#div1").delay(600).fadeIn('3').fadeOut(6000);
+          $("#div1").delay(600).fadeIn(300).fadeOut(6000);
       });
   </script>
 <style>
@@ -23,7 +23,6 @@
   z-index: 2;
   cursor: pointer;
 }
-
 #text{
   position: absolute;
   text-align: center;
@@ -138,6 +137,8 @@ table{
     <th>Hospital Address:</th>
     <th>Hospital Pin Code:</th>
     <th>Hospital Contact no.:</th>
+    <th>Total Beds:</th>
+    <th>Available Beds:</th>
     <th>Booking Form:</th>
   </thead>
   {% for hospital in filteredhospitals %}
@@ -148,6 +149,8 @@ table{
     <td>{{ hospital.address }}</td>
     <td>{{ hospital.pin_code }}</td>
     <td>{{ hospital.contact_no }}</td>
+    <td> {{ hospital.total_beds }}</td>
+    <td> {{ hospital.available_beds }}</td>
     <td>
       <a href="{% url 'general:booking' slug=hospital.slug %}">
         <button type="button" class="btn btn-primary" name="button">Book Appointment</button>
@@ -167,6 +170,7 @@ table{
     <th>Testing Facility Address:</th>
     <th>Testing Facility Pin Code:</th>
     <th>Testing Facility Contact no.:</th>
+    <th>Availablity</th>
     <th>Booking Form:</th>
   </thead>
   {% for test in filteredtesting %}
@@ -177,6 +181,7 @@ table{
     <td>{{ test.address }}</td>
     <td>{{ test.pin_code }}</td>
     <td>{{ test.contact_no }}</td>
+    <td>{{ test.availablity }}</td>
     <td>
       <a href="{% url 'general:booking' slug=test.slug %}">
       <button type="button" class="btn btn-primary" name="button">Book Appointment</button>
@@ -195,6 +200,8 @@ table{
     <th>Hospital Address:</th>
     <th>Hospital Pin Code:</th>
     <th>Hospital Contact no.:</th>
+    <th>Total Beds:</th>
+    <th>Available Beds:</th>
     <th>Booking Form:</th>
   </thead>
   {% for hospital in hospitals %}
@@ -205,6 +212,8 @@ table{
     <td>{{ hospital.address }}</td>
     <td>{{ hospital.pin_code }}</td>
     <td>{{ hospital.contact_no }}</td>
+    <td> {{ hospital.total_beds }}</td>
+    <td> {{ hospital.available_beds }}</td>
     <td>
       <a href="{% url 'general:booking' slug=hospital.slug %}">
         <button type="button" class="btn btn-primary" name="button">Book Appointment</button>
@@ -213,7 +222,6 @@ table{
   </tr>
   {% endfor %}
 </table>
-
 <h2 id="testing" style="text-align: center;"><u>Testing Facility List</u></h2>
 <table class="table table-hover">
   <thead class="table-primary">
@@ -223,6 +231,7 @@ table{
     <th>Testing Facility Address:</th>
     <th>Testing Facility Pin Code:</th>
     <th>Testing Facility Contact no.:</th>
+    <th>Availablity</th>
     <th>Booking Form:</th>
   </thead>
   {% for test in testing %}
@@ -233,6 +242,7 @@ table{
     <td>{{ test.address }}</td>
     <td>{{ test.pin_code }}</td>
     <td>{{ test.contact_no }}</td>
+    <td>{{ test.availablity }}</td>
     <td>
       <a href="{% url 'general:booking' slug=test.slug %}">
       <button type="button" class="btn btn-primary" name="button">Book Appointment</button>
