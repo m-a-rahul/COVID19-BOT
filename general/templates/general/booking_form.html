@@ -25,6 +25,7 @@
     <form style="margin: 40px;" method="post">
       {% csrf_token %}
       {{ form.as_p }}
+      {{ symptoms.as_p}}
       <button type="submit" name="button">Submit</button>
     </form>
 {% endblock %}

@@ -1,4 +1,4 @@
-from .models import Hospitalprofile,Testingprofile
+from .models import Hospitalprofile,Testingprofile,Symptoms
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import ValidationError,EmailField,ModelForm
 from django.contrib.auth import get_user_model
@@ -38,10 +38,10 @@ class TestingCreateForm(UserCreationForm):
 
 class HospitalprofileForm(ModelForm):
     class Meta:
-        fields =("address","contact_no","pin_code","total_beds","occupied_beds","available_beds")
+        fields =("door_no","street","city","state","contact_no","pin_code","total_beds","occupied_beds","available_beds")
         model = Hospitalprofile
 
 class TestingprofileForm(ModelForm):
     class Meta:
-        fields =("address","contact_no","pin_code","availablity")
+        fields =("door_no","street","city","state","address","contact_no","pin_code","availablity")
         model = Testingprofile

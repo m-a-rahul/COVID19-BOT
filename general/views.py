@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import Bookingform
+from .forms import Bookingform,Symptomsform
 from accounts.models import Hospitalprofile,Testingprofile,Booking
 from random import randint
 from django.contrib import messages
@@ -56,17 +56,17 @@ def Homepage(request):
 def booking(request,slug):
     if request.method == 'POST':
         form = Bookingform(data=request.POST)
-        if form.is_valid():
+        symptoms = Symptomsform(data=request.POST)
+        if form.is_valid() and symptoms.is_valid():
             upload_form = form.save(commit=False)
+            symptoms_form = symptoms.save(commit=False)
             try:
                 book = Hospitalprofile.objects.get(slug=slug)
                 #raw('SELECT * FROM accounts_hospitalprofile where slug = %s' %slug)
-                print(book)
                 booking = book.hospital
             except:
                 book = Testingprofile.objects.get(slug=slug)
                 #raw('SELECT * FROM accounts_testingprofile where slug = %s' %slug)
-                print(book)
                 booking = book.testing
             integrity=False
             while(integrity==False):
@@ -78,8 +78,11 @@ def booking(request,slug):
                 except :
                     integrity = True
             upload_form.booking = booking
+            symptoms_form.naiveuser_id = upload_form
             upload_form.naiveuser_id = code
             upload_form.save()
+            symptoms_form.save()
     else:
         form = Bookingform()
-    return render(request,'general/booking_form.html',{'form':form})
+        symptoms = Symptomsform()
+    return render(request,'general/booking_form.html',{'form':form,'symptoms':symptoms})
