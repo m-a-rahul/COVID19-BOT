@@ -116,9 +116,19 @@ body {
   }
 }
 </style>
+<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+  <script>
+      $(document).ready(function () {
+          // Hide the div
+          $("#div1").hide();
+          // Show the div after 5s
+          $("#div1").delay(600).fadeIn(300).fadeOut(6000);
+      });
+  </script>
 </head>
 <body>
-
+  <div id="div1" style="display:none"><div id="text">Rahul & Pritish's DBMS Project<br>Thanks for Viewing</div></div>
+  <span id="count"></span>
 <div class="topnav" id="myTopnav">
   <a href="{% url 'home' %}" class="active">Home</a>
   <a href="#hospital">Hospital</a>
