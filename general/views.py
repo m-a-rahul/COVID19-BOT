@@ -1,8 +1,10 @@
 from django.shortcuts import render
-from .forms import Bookingform,Symptomsform
+from .forms import Bookingform,Symptomsform,Reportform
 from accounts.models import Hospitalprofile,Testingprofile,Booking
 from random import randint
 from django.contrib import messages
+from twilio.rest import Client
+from BOT import secrets
 # Create your views here.
 def Homepage(request):
     current_instance ="Null"
@@ -86,3 +88,28 @@ def booking(request,slug):
         form = Bookingform()
         symptoms = Symptomsform()
     return render(request,'general/booking_form.html',{'form':form,'symptoms':symptoms})
+
+def Report(request,slug):
+    booking = Booking.objects.get(naiveuser_id=slug)
+    account_sid = secrets.account_sid
+    auth_token  = secrets.auth_token
+    client = Client(account_sid, auth_token)
+    if request.method == 'POST':
+        form=Reportform(data=request.POST)
+        if form.is_valid():
+            upload_form =form.save(commit=False)
+            upload_form.naiveuser_id = booking
+            if upload_form.result == 'Postive':
+                message = client.messages.create(
+                            to="+919150114577",
+                            from_="+19285890874",
+                            body="You have been tested positive")
+            else:
+                message = client.messages.create(
+                            to="+919150114577",
+                            from_="+19285890874",
+                            body="You have been tested negative")            
+            upload_form.save()
+    else:
+        form=Reportform()
+    return render(request,'general/report_form.html',{'form':form})

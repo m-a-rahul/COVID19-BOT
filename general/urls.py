@@ -5,4 +5,5 @@ app_name = 'general'
 
 urlpatterns = [
     path('booking/<slug>',views.booking,name='booking'),
+    path('result/<slug>',views.Report,name='result'),
 ]

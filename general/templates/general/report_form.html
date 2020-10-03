@@ -1,0 +1,30 @@
+{% extends "base.html"%}
+{% block content %}
+<style>
+  button
+  {
+    border: none;
+    background-color: orangered;
+    text-align: center;
+    text-decoration: solid black;
+    width: 150px;
+    border-radius: 20px;
+  }
+  input
+      {
+        border-radius: 20px;
+        padding: 5px;
+        border: 1px solid grey;
+      }
+      button:hover
+            {
+                background-color: rgb(255, 196, 0);
+            }
+</style>
+<h2 style="text-align: center; text-decoration: black underline; margin: 50px;">Welcome to the Appointment Booking Form</h2>
+    <form style="margin: 40px;" method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" name="button">Submit</button>
+    </form>
+{% endblock %}
