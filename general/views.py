@@ -5,6 +5,13 @@ from random import randint
 from django.contrib import messages
 from twilio.rest import Client
 from BOT import secrets
+from paytm import checksum
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.text import slugify
+from django.views.decorators.csrf import csrf_exempt
+import datetime
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 # Create your views here.
 def Homepage(request):
     current_instance ="Null"
@@ -66,10 +73,12 @@ def booking(request,slug):
                 book = Hospitalprofile.objects.get(slug=slug)
                 #raw('SELECT * FROM accounts_hospitalprofile where slug = %s' %slug)
                 booking = book.hospital
+                amount = 1500
             except:
                 book = Testingprofile.objects.get(slug=slug)
                 #raw('SELECT * FROM accounts_testingprofile where slug = %s' %slug)
                 booking = book.testing
+                amount = 300
             integrity=False
             while(integrity==False):
                 random_code = randint(1000,9999)
@@ -79,15 +88,54 @@ def booking(request,slug):
                     integrity = False
                 except :
                     integrity = True
+            customer_name = upload_form.name
             upload_form.booking = booking
             symptoms_form.naiveuser_id = upload_form
             upload_form.naiveuser_id = code
+            print(upload_form.payment)
             upload_form.save()
             symptoms_form.save()
+            #Paytm
+            order_name = slugify(upload_form.name)
+            order_date = slugify(datetime.datetime.now())
+            order_id = slugify(order_name+order_date)
+            MERCHANT_KEY = secrets.MERCHANT_KEY
+            if upload_form.payment:
+                param_dict = {
+                        'MID': secrets.MERCHANT_ID,
+                        'ORDER_ID': str(order_id),
+                        'TXN_AMOUNT': str(amount),
+                        'CUST_ID': customer_name,
+                        'INDUSTRY_TYPE_ID': 'Retail',
+                        'WEBSITE': 'WEBSTAGING',
+                        'CHANNEL_ID': 'WEB',
+                        'CALLBACK_URL':'http://127.0.0.1:8000/general/paytm/',
+
+                        }
+                param_dict['CHECKSUMHASH'] = checksum.generate_checksum(param_dict, MERCHANT_KEY)
+                return render(request, 'general/paytm.html',{'param_dict':param_dict})
     else:
         form = Bookingform()
         symptoms = Symptomsform()
     return render(request,'general/booking_form.html',{'form':form,'symptoms':symptoms})
+
+
+@csrf_exempt
+def paytm_handle(request):
+    form = request.POST
+    response_dict = {}
+    MERCHANT_KEY = secrets.MERCHANT_KEY
+    for i in form.keys():
+        response_dict[i] = form[i]
+        if i == 'CHECKSUMHASH':
+            Checksum = form[i]
+    verify = checksum.verify_checksum(response_dict, MERCHANT_KEY, Checksum)
+    if verify:
+        if response_dict['RESPCODE'] == '01':
+            messages.success(request, 'Your booking has been registered')
+            return HttpResponseRedirect(reverse('home'))
+    return render(request, 'general/paymentstatus.html', {'response': response_dict})
+
 
 def Report(request,slug):
     booking = Booking.objects.get(naiveuser_id=slug)
@@ -108,7 +156,7 @@ def Report(request,slug):
                 message = client.messages.create(
                             to="+919150114577",
                             from_="+19285890874",
-                            body="You have been tested negative")            
+                            body="You have been tested negative")
             upload_form.save()
     else:
         form=Reportform()
