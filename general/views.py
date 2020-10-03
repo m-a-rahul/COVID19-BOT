@@ -92,13 +92,13 @@ def booking(request,slug):
             upload_form.booking = booking
             symptoms_form.naiveuser_id = upload_form
             upload_form.naiveuser_id = code
-            print(upload_form.payment)
-            upload_form.save()
-            symptoms_form.save()
-            #Paytm
             order_name = slugify(upload_form.name)
             order_date = slugify(datetime.datetime.now())
             order_id = slugify(order_name+order_date)
+            upload_form.payment_id = order_id
+            upload_form.save()
+            symptoms_form.save()
+            #Paytm
             MERCHANT_KEY = secrets.MERCHANT_KEY
             if upload_form.payment:
                 param_dict = {
@@ -132,8 +132,13 @@ def paytm_handle(request):
     verify = checksum.verify_checksum(response_dict, MERCHANT_KEY, Checksum)
     if verify:
         if response_dict['RESPCODE'] == '01':
+            inst = Booking.objects.get(payment_id=response_dict['ORDERID'])
+            inst.payment_id=response_dict['TXNID']
+            inst.save()
             messages.success(request, 'Your booking has been registered')
             return HttpResponseRedirect(reverse('home'))
+        else:
+            Booking.objects.get(payment_id=response_dict['ORDERID']).delete()
     return render(request, 'general/paymentstatus.html', {'response': response_dict})
 
 
