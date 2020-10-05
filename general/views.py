@@ -114,6 +114,9 @@ def booking(request,slug):
                         }
                 param_dict['CHECKSUMHASH'] = checksum.generate_checksum(param_dict, MERCHANT_KEY)
                 return render(request, 'general/paytm.html',{'param_dict':param_dict})
+            else:
+                messages.success(request, 'Booking completed')
+                return HttpResponseRedirect(reverse('home'))
     else:
         form = Bookingform()
         symptoms = Symptomsform()

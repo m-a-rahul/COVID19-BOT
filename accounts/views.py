@@ -46,6 +46,8 @@ def Hospitalupdate(request):
         hospital_profile_form = HospitalprofileForm(data=request.POST,instance=hospital_instance)
         if hospital_profile_form.is_valid():
             details_form = hospital_profile_form.save()
+            messages.success(request, 'Updated successfully')
+            return HttpResponseRedirect(reverse('home'))
     else :
         hospital_profile_form = HospitalprofileForm(instance=hospital_instance)
     return render(request,'accounts/update.html',{'form':hospital_profile_form,
@@ -88,6 +90,8 @@ def Testingupdate(request):
         testing_profile_form = TestingprofileForm(data=request.POST,instance=testing_instance)
         if testing_profile_form.is_valid():
             details_form = testing_profile_form.save()
+            messages.success(request, 'Updated successfully')
+            return HttpResponseRedirect(reverse('home'))
     else :
         testing_profile_form = TestingprofileForm(instance=testing_instance)
     return render(request,'accounts/update.html',{'form':testing_profile_form,

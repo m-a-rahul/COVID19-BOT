@@ -42,6 +42,15 @@ table{
 <div id="div1" style="display:none"><div id="text">Rahul & Pritish's DBMS Project<br>Thanks for Viewing</div></div>
   <span id="count"></span>
   <div class="container">
+    <div class="text-center">
+      {% if messages %}
+       {% for message in messages %}
+         <div class="alert alert-{{ message.tags }}" role="alert">
+           {{ message }}
+         </div>
+       {% endfor %}
+     {% endif %}
+    </div>
   {% if is_hospital == "True" %}
   <h1>Details</h1>
   <p>Total beds: {{ current_instance.total_beds }}</p>
@@ -134,15 +143,6 @@ table{
     <input type="submit"  value="Find">
   </div>
 </form>
-  <div class="text-center">
-    {% if messages %}
-     {% for message in messages %}
-       <div class="alert alert-{{ message.tags }}" role="alert">
-         {{ message }}
-       </div>
-     {% endfor %}
-   {% endif %}
-  </div>
 {% if filteredhospitals %}
 <h3 style="text-align: center;"><u>Hospitals Near You:</u></h3>
 <table class="table table-responsive table-bordered">
