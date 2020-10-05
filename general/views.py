@@ -160,11 +160,15 @@ def Report(request,slug):
                             to="+919150114577",
                             from_="+19285890874",
                             body="You have been tested positive")
+                messages.success(request, 'Report Sent As an SMS')
+                return HttpResponseRedirect(reverse('home'))
             else:
                 message = client.messages.create(
                             to="+919150114577",
                             from_="+19285890874",
                             body="You have been tested negative")
+                messages.success(request, 'Report Sent As an SMS')
+                return HttpResponseRedirect(reverse('home'))
             upload_form.save()
     else:
         form=Reportform()
