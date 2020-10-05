@@ -64,6 +64,7 @@ table{
       <th>User Address:</th>
       <th>User Pin Code:</th>
       <th>User Contact no.:</th>
+      <th>Payment status :</th>
       <th>Report Updation:</th>
     </thead>
     {% for bookings in bookings_under %}
@@ -73,6 +74,7 @@ table{
       <td>{{ bookings.address }}</td>
       <td>{{ bookings.pin_code }}</td>
       <td>{{ bookings.contact_no }}</td>
+      <td>{% if bookings.payment %}PAID {% else %}NOT PAID{% endif %}</td>
       <td>
         <a href="{% url 'general:result' slug=bookings.naiveuser_id %}">
           <button type="button" class="btn btn-success" name="button">Result</button>
@@ -102,6 +104,7 @@ table{
       <th>User Address:</th>
       <th>User Pin Code:</th>
       <th>User Contact no.:</th>
+      <th>Payment status :</th>
       <th>Report Updation:</th>
     </thead>
     {% for bookings in bookings_under %}
@@ -111,6 +114,7 @@ table{
       <td>{{ bookings.address }}</td>
       <td>{{ bookings.pin_code }}</td>
       <td>{{ bookings.contact_no }}</td>
+      <td>{% if bookings.payment %}PAID {% else %}NOT PAID{% endif %}</td>
       <td>
         <a href="{% url 'general:result' slug=bookings.naiveuser_id %}">
           <button type="button" class="btn btn-success" name="button">Result</button>

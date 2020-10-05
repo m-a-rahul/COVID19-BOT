@@ -5,11 +5,11 @@
 <form enctype="multipart/form-data" method="post">
   {% csrf_token %}
   <label for="">Total Beds:</label>
-  {{ form.total_beds }}
+  {{ form.total_beds }}<br>
   <label for="">Occupied Beds</label>
-  {{ form.occupied_beds }}
+  {{ form.occupied_beds }}<br>
   <label for="">Available Beds:</label>
-  {{ form.available_beds }}
+  {{ form.available_beds }}<br>
   <div style="display:none">
     {{ form.address }}
     {{ form.contact_no }}
@@ -21,7 +21,7 @@
 <form enctype="multipart/form-data" method="post">
   {% csrf_token %}
   <label for="">Availablity:</label>
-  {{ form.availablity }}
+  {{ form.availablity }}<br>
   <div style="display:none">
     {{ form.address }}
     {{ form.contact_no }}
