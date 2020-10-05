@@ -48,7 +48,7 @@ table{
   <p>Available beds: {{ current_instance.available_beds }}</p>
   <p>Occupied beds: {{ current_instance.occupied_beds }}</p>
   <a href="{% url 'accounts:hupdate' %}">
-    <button type="button" class="btn btn-outline-primary" name="button">Update</button>
+    <button type="button" class="btn btn-success" name="button">Update</button><br>
   </a>
   {% if bookings_under == "No bookings" %}
   <div class="text-center">
@@ -56,7 +56,7 @@ table{
          There are no bookings under your hospital name
        </div>
   </div>
-  {% else %}
+  {% else %}<br>
   <table class="table table-bordered">
     <thead class="table-success">
       <th>User Code:</th>
@@ -64,6 +64,7 @@ table{
       <th>User Address:</th>
       <th>User Pin Code:</th>
       <th>User Contact no.:</th>
+      <th>Report Updation:</th>
     </thead>
     {% for bookings in bookings_under %}
     <tr>
@@ -85,7 +86,7 @@ table{
   <h1>Details</h1>
   <p>Availablity : {{ current_instance.availablity }}</p>
   <a href="{% url 'accounts:tupdate' %}">
-    <button type="button" class="btn btn-outline-primary"name="button">Update</button>
+    <button type="button" class="btn btn-sucsess"name="button">Update</button><br>
   </a>
   {% if bookings_under == "No bookings" %}
   <div class="text-center">
@@ -101,6 +102,7 @@ table{
       <th>User Address:</th>
       <th>User Pin Code:</th>
       <th>User Contact no.:</th>
+      <th>Report Updation:</th>
     </thead>
     {% for bookings in bookings_under %}
     <tr>

@@ -15,7 +15,7 @@
     {{ form.contact_no }}
     {{ form.pin_code }}
   </div>
-  <button type="submit" name="button">Submit</button>
+  <button type="submit" name="button" class="btn btn-success">Submit</button>
 </form>
 {% else %}
 <form enctype="multipart/form-data" method="post">
@@ -27,7 +27,7 @@
     {{ form.contact_no }}
     {{ form.pin_code }}
   </div>
-  <button type="submit" name="button">Submit</button>
+  <button type="submit" name="button" class="btn btn-success">Submit</button>
 </form>
 {% endif %}
 {% endblock %}

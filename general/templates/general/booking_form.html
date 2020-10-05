@@ -7,6 +7,7 @@
     background-color: orangered;
     text-align: center;
     text-decoration: solid black;
+    font-weight: 600;
     width: 150px;
     border-radius: 20px;
   }
@@ -19,13 +20,22 @@
       button:hover
             {
                 background-color: rgb(255, 196, 0);
+                border: orangered;
+                text-decoration: underline;
             }
+            form  { display: table;      }
+p     { display: table-row;  }
+label { display: table-cell;
+font-weight: 500; }
+input { display: table-cell;
+margin: 5px; }
 </style>
 <h2 style="text-align: center; text-decoration: black underline; margin: 50px;">Welcome to the Appointment Booking Form</h2>
     <form style="margin: 40px;" method="post">
       {% csrf_token %}
-      {{ form.as_p }}
-      {{ symptoms.as_p}}
+      {{ form.as_p }}<br>
+      <p><b><u>Symptoms</u></b></p>
+      {{ symptoms.as_p}}<br>
       <button type="submit" name="button">Submit</button>
     </form>
 {% endblock %}
