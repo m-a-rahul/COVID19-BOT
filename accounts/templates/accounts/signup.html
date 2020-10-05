@@ -39,7 +39,9 @@
             {
                 background-color: rgb(255, 196, 0);
             }
-            form  { display: table;      }
+            form  { display: table;  
+            background-color:rgb(255, 196, 0);border: black 20px;
+              }
 p     { display: table-row;  }
 label { display: table-cell;
 font-weight: 500; }
@@ -48,14 +50,16 @@ margin: 5px; }
 ul{
   display: none;
 }
+.helptext
+{display: none;}
     </style>
 
   <h2 style="margin: 10px; text-align: center; text-decoration: solid underline;">Welcome to Sign Up page of BOT Ecosystem</h2>
-    <form style="margin: 20px; margin-left: 40px;" enctype="multipart/form-data" method="post">
+    <form style="width: 300px; height: 300px; margin: 0 auto; padding: 50px ;" enctype="multipart/form-data" method="post">
       {% csrf_token %}
       {{ form.as_p }}
-      {{ profile_form.as_p }}
-      <button type="submit" name="button">Submit</button>
+      {{ profile_form.as_p }}<br>
+      <button type="submit" style="margin-left: 95%;" name="button">Submit</button>
     </form>
     <script type="text/javascript">
       document.getElementById('id_contact_no').type = 'number';

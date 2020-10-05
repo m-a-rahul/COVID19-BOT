@@ -1,12 +1,39 @@
 {% extends "base.html"%}
 {% load static %}
 {% block content %}
+<style>
+  button:hover
+            {
+                background-color: rgb(255, 196, 0);
+                border: orangered;
+                text-decoration: underline;
+            }
+            button
+  {
+    border: none;
+    background-color: orangered;
+    text-align: center;
+    text-decoration: solid black;
+    font-weight: 600;
+    width: 150px;
+    border-radius: 20px;
+  }input
+      {
+        border-radius: 20px;
+        padding: 5px;
+        border: 1px solid grey;
+      }
+      label
+      {
+        font-weight: 600;
+      }
+</style>
 {% if is_hospital == "True" %}
-<form enctype="multipart/form-data" method="post">
+<form style="width: 300px; height: 300px; margin: 0 auto; padding: 50px ;" enctype="multipart/form-data" method="post">
   {% csrf_token %}
   <label for="">Total Beds:</label>
   {{ form.total_beds }}<br>
-  <label for="">Occupied Beds</label>
+  <label for="">Occupied Beds:</label>
   {{ form.occupied_beds }}<br>
   <label for="">Available Beds:</label>
   {{ form.available_beds }}<br>
@@ -14,7 +41,7 @@
     {{ form.address }}
     {{ form.contact_no }}
     {{ form.pin_code }}
-  </div>
+  </div><br><br>
   <button type="submit" name="button" class="btn btn-success">Submit</button>
 </form>
 {% else %}

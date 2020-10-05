@@ -1,6 +1,8 @@
 {% extends "base.html"%}
 {% block content %}
 <style>
+  label
+  {font-weight: 500;}
   button
   {
     border: none;
@@ -23,7 +25,7 @@
                 border: orangered;
                 text-decoration: underline;
             }
-            form  { display: table;      }
+            form  { display: table; background-color:rgb(255, 196, 0);     }
 p     { display: table-row;  }
 label { display: table-cell;
 font-weight: 500; }
@@ -31,11 +33,11 @@ input { display: table-cell;
 margin: 5px; }
 </style>
 <h2 style="text-align: center; text-decoration: black underline; margin: 50px;">Welcome to the Appointment Booking Form</h2>
-    <form style="margin: 40px;" method="post">
+    <form style="width: 300px; height: 300px; margin: 0 auto; padding: 50px ;" method="post">
       {% csrf_token %}
       {{ form.as_p }}<br>
       <p><b><u>Symptoms</u></b></p>
       {{ symptoms.as_p}}<br>
-      <button type="submit" name="button">Submit</button>
+      <button type="submit" style="margin-left: 70%;" name="button">Submit</button>
     </form>
 {% endblock %}
