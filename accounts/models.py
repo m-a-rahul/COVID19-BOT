@@ -51,7 +51,7 @@ class Booking(models.Model):
     payment = models.BooleanField(default=False)
 
 class Symptoms(models.Model):
-    naiveuser_id = models.ForeignKey(Booking,on_delete=models.CASCADE)
+    naiveuser_id = models.OneToOneField(Booking,on_delete=models.CASCADE)
     temprature = models.BooleanField()
     cough = models.BooleanField()
     headache = models.BooleanField()
