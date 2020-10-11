@@ -26,6 +26,7 @@ body {
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
+  font-weight: 500;
 }
 
 .active {
@@ -36,7 +37,10 @@ body {
 .topnav .icon {
   display: none;
 }
-
+.topnav.scroll {
+  z-index: 1000;
+  background-color: white;
+  border-bottom: 1px solid #e9ecef;}
 .dropdn {
   float: left;
   overflow: hidden;
@@ -147,6 +151,13 @@ body {
   {% else %}
   <a href="{% url 'accounts:login' %}">Login</a>
   <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+  <form style="text-align: center;" method="POST" id="pincode"> 
+    {% csrf_token %}
+    <div class="text-center" style="margin-top: 10px; margin-right: 20px; color: whitesmoke; float: right;">Type your Pincode:
+      <input type="text" name="pin_code" value="" style="width: 250px;"  placeholder="Hospital/Testing Search">
+      <input type="submit"  value="Find">
+    </div>
+  </form>
 {% endif %}
 </div>
 {% block content %}

@@ -10,6 +10,10 @@
       });
   </script>
 <style>
+  h2
+  {
+    color: whitesmoke;
+  }
       #div1 {
   position: fixed;
   display: none;
@@ -158,18 +162,10 @@ table {
   </table>
   {% endif %}
   {% else %}
+  <h2 style="border-radius: 25px; text-align: center; text-decoration: underline;margin: 20px;background-color: orangered; margin-left: 35%;margin-right: 35%;padding: 20px;">Beds On Track(BOT)</h2>
   <iframe src="https://ourworldindata.org/grapher/total-cases-covid-19?tab=map" width="100%" height="300px"></iframe>
-<form style="text-align: center;" method="POST">
-  {% csrf_token %}
-  <h2 style="text-align: center; text-decoration: underline;">Beds On Track(BOT)</h2>
-
-  <div class="text-center" style="margin:10px 0px;">Type your Pincode:
-    <input type="text" name="pin_code" value="" style="width: 250px;"  placeholder="Hospital/Testing Search">
-    <input type="submit"  value="Find">
-  </div>
-</form>
 {% if filteredhospitals %}
-<h3 style="text-align: center;"><u>Hospitals Near You:</u></h3>
+<h2 style="text-align: center;margin: 20px;background-color: orangered; margin-left: 35%;margin-right: 35%;padding: 20px;"><u>Hospitals Near You:</u></h2>
 <table class="table table-responsive table-bordered">
   <thead class="table-danger">
     <th>Hospital Code:</th>
@@ -202,7 +198,7 @@ table {
 </table>
 {% endif %}
 {% if filteredtesting %}
-<h3 style="text-align: center;"><u>Testing Facilities Near You</u></h3>
+<h2 style="text-align: center;margin: 20px;background-color: orangered; margin-left: 35%;margin-right: 35%;padding: 20px;"><u>Testing Facilities Near You</u></h2>
 <table class="table table-bordered">
   <thead class="table-danger">
     <th>Testing Facility Code:</th>
@@ -232,7 +228,7 @@ table {
   {% endfor %}
 </table>
 {% endif %}
-<h2 id="hospital" style="text-align: center;"><u>Hospitals List</u></h2>
+<h2 id="hospital" style="text-align: center;margin: 20px;background-color: orangered; margin-left: 35%;margin-right: 35%;padding: 20px;"><u>Hospitals List</u></h2>
 <table class="table table-responsive">
   <thead class="table-primary">
     <th>Hospital Code:</th>
@@ -263,7 +259,7 @@ table {
   </tr>
   {% endfor %}
 </table>
-<h2 id="testing" style="text-align: center;"><u>Testing Facility List</u></h2>
+<h2 id="testing" style="text-align: center;margin: 20px;background-color: orangered; margin-left: 35%;margin-right: 35%;padding: 20px;"><u>Testing Facility List</u></h2>
 <table class="table table-hover">
   <thead class="table-primary">
     <th>Testing Facility Code:</th>
