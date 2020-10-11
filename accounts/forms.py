@@ -43,5 +43,5 @@ class HospitalprofileForm(ModelForm):
 
 class TestingprofileForm(ModelForm):
     class Meta:
-        fields =("door_no","street","city","state","address","contact_no","pin_code","availablity")
+        fields =("door_no","street","city","state","contact_no","pin_code","availablity")
         model = Testingprofile
