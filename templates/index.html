@@ -33,15 +33,15 @@
   transform: translate(-50%,-50%);
   -ms-transform: translate(-50%,-50%);
 }
-table{
+table {
   background-color: white;
-  font-weight: 900;
+  font-weight: 500;
 }
 
 </style>
 <div id="div1" style="display:none"><div id="text">Rahul & Pritish's DBMS Project<br>Thanks for Viewing</div></div>
   <span id="count"></span>
-  <div class="container">
+  <div class="container-fluid">
     <div class="text-center">
       {% if messages %}
        {% for message in messages %}
@@ -136,22 +136,22 @@ table{
       <td>{{ bookings.address }}</td>
       <td>{{ bookings.pin_code }}</td>
       <td>{{ bookings.contact_no }}</td>
+      <td>
+        {% if bookings.symptoms %}
+        <ul>
+          {% if bookings.symptoms.temprature %}<li>temprature</li>{% endif %}
+          {% if bookings.symptoms.headache %}<li>headache</li>{% endif %}
+          {% if bookings.symptoms.cough %}<li>cough</li>{% endif %}
+        </ul>
+        {% else %}
+          No symptoms
+        {% endif %}
+      </td>
       <td>{% if bookings.payment %}PAID {% else %}NOT PAID{% endif %}</td>
       <td>
         <a href="{% url 'general:result' slug=bookings.naiveuser_id %}">
           <button type="button" class="btn btn-success" name="button">Result</button>
         </a>
-     </td>
-     <td>
-       {% if bookings.symptoms %}
-       <ul>
-         {% if bookings.symptoms.temprature %}<li>temprature</li>{% endif %}
-         {% if bookings.symptoms.headache %}<li>headache</li>{% endif %}
-         {% if bookings.symptoms.cough %}<li>cough</li>{% endif %}
-       </ul>
-       {% else %}
-         No symptoms
-       {% endif %}
      </td>
     </tr>
     {% endfor %}

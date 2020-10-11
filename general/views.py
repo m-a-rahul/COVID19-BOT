@@ -71,6 +71,9 @@ def booking(request,slug):
             symptoms_form = symptoms.save(commit=False)
             try:
                 book = Hospitalprofile.objects.get(slug=slug)
+                book.available_beds-=1
+                book.save()
+
                 #raw('SELECT * FROM accounts_hospitalprofile where slug = %s' %slug)
                 booking = book.hospital
                 amount = 1500
@@ -78,6 +81,9 @@ def booking(request,slug):
                 book = Testingprofile.objects.get(slug=slug)
                 #raw('SELECT * FROM accounts_testingprofile where slug = %s' %slug)
                 booking = book.testing
+                book.availablity-=1
+                book.save()
+
                 amount = 300
             integrity=False
             while(integrity==False):
