@@ -48,7 +48,7 @@
   <button type="submit" name="button" class="btn btn-success">Submit</button>
 </form>
 {% else %}
-<form enctype="multipart/form-data" method="post">
+<form enctype="multipart/form-data" style="width: 300px; height: 300px; margin: 0 auto; padding: 50px ;margin-top:100px;" method="post">
   {% csrf_token %}
   <label for="">Availablity:</label>
   {{ form.availablity }}<br>
@@ -60,6 +60,7 @@
     {{ form.contact_no }}
     {{ form.pin_code }}
   </div>
+  <br>
   <button type="submit" name="button" class="btn btn-success">Submit</button>
 </form>
 {% endif %}
