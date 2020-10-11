@@ -14,7 +14,11 @@ body {
         }
 
 .topnav {
-  overflow: hidden;
+  overflow: visible;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  margin-bottom: 20px;
   background-color: rgba(255, 72, 0, 0.959);
 }
 
@@ -44,6 +48,7 @@ body {
 .dropdn {
   float: left;
   overflow: hidden;
+  z-index: 1000;
 }
 
 .dropdn .dropbtn {
@@ -63,7 +68,7 @@ body {
   background-color: #f9f9f9;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+  z-index: 1000;
 }
 
 .dropdn-content a {
@@ -137,8 +142,11 @@ body {
   <a href="{% url 'home' %}" class="active">Home</a>
   <a href="#hospital">Hospital</a>
   <a href="#testing">Testing</a>
+  {% if user.is_authenticated %}
+  <a href="{% url 'accounts:logout' %}">Log Out</a>
+  {% else %}
   <div class="dropdn">
-    <button class="dropbtn">Sign-In
+    <button class="dropbtn" style="font-weight: 700; color: #f2f2f2;;">Sign-In
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdn-content">
@@ -146,16 +154,13 @@ body {
       <a href="{% url 'accounts:hsignup' %}">Hospital Sign-In</a>
     </div>
   </div>
-  {% if user.is_authenticated %}
-  <a href="{% url 'accounts:logout' %}">Log Out</a>
-  {% else %}
   <a href="{% url 'accounts:login' %}">Login</a>
   <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
   <form style="text-align: center;" method="POST" id="pincode"> 
     {% csrf_token %}
     <div class="text-center" style="margin-top: 10px; margin-right: 20px; color: whitesmoke; float: right;">Type your Pincode:
-      <input type="text" name="pin_code" value="" style="width: 250px;"  placeholder="Hospital/Testing Search">
-      <input type="submit"  value="Find">
+      <input type="text" name="pin_code" value="" style="width: 250px; border-radius: 25px; padding: 5px; border: none; padding-left: 10px;"  placeholder="Hospital/Testing Search">
+      <input type="submit"  value="Find" class="btn btn-primary">
     </div>
   </form>
 {% endif %}

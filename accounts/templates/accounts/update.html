@@ -28,7 +28,7 @@
         font-weight: 600;
       }
 </style>
-{% if is_hospital == "True" %}
+{% if is_hospital == "True" %}<br><br>
 <form style="width: 300px; height: 300px; margin: 0 auto; padding: 50px ;" enctype="multipart/form-data" method="post">
   {% csrf_token %}
   <label for="">Total Beds:</label>
