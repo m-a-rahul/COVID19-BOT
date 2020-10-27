@@ -11,7 +11,7 @@ This is a django based website to do the same (under development).
   
 # Conceptual Schema of Database( At initial stages)
 
-![alt text](https://github.com/Rahul0700/COVID19-BOT/blob/master/BOT.jpg?raw=true)
+![alt text](https://github.com/Rahul0700/COVID19-BOT/blob/master/BOT.jpeg?raw=true)
 
 # Collaborators 
   
