@@ -9,7 +9,7 @@ This is a django based website to do the same (under development).
   Framework- DJANGO<br>
   Database Management Software- SQLite 3<br>
   
-# Conceptual Schema of Database( At initial stages)
+# Conceptual Schema of Database
 
 ![alt text](https://github.com/Rahul0700/COVID19-BOT/blob/master/BOT.jpeg?raw=true)
 
