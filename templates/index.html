@@ -56,12 +56,12 @@ table {
      {% endif %}
     </div>
   {% if is_hospital == "True" %}
-  <h1 style="margin-top: 60px;">Details</h1>
+  <h1 class="mt-5" style="margin-top: 60px;">Details</h1>
   <p>Total beds: {{ current_instance.total_beds }}</p>
   <p>Available beds: {{ current_instance.available_beds }}</p>
   <p>Occupied beds: {{ current_instance.occupied_beds }}</p>
   <a href="{% url 'accounts:hupdate' %}">
-    <button type="button" class="btn btn-success" name="button">Update</button><br>
+    <button type="button" class="btn btn-danger" name="button">Update</button><br>
   </a>
   {% if bookings_under == "No bookings" %}
   <div class="text-center">
@@ -110,10 +110,10 @@ table {
   </table>
   {% endif %}
   {% elif is_hospital == "False"%}
-  <h1>Details</h1>
+  <h1 class="mt-5">Details</h1>
   <p>Availablity : {{ current_instance.availablity }}</p>
   <a href="{% url 'accounts:tupdate' %}">
-    <button type="button" class="btn btn-sucsess"name="button">Update</button><br>
+    <button type="button" class="btn btn-danger mb-3"name="button">Update</button><br>
   </a>
   {% if bookings_under == "No bookings" %}
   <div class="text-center">
