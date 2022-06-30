@@ -7,7 +7,7 @@ Health & Family Welfare Department of Tamil Nadu released [StopCoronaTN](https:/
 # Collaborators 
   
   [Pritish Gupta](https://github.com/princepritish)<br>
-  [Rahul MA](https://github.com/Rahul0700)<br>
+  [Rahul MA](https://github.com/m-a-rahul)<br>
   [Thejineaswar Guhan](https://github.com/Thejineaswar)<br>
 
 
